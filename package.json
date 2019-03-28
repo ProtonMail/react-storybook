@@ -1,0 +1,34 @@
+{
+  "name": "react-storybook",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ProtonMail/react-storybook.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ProtonMail/react-storybook/issues"
+  },
+  "homepage": "https://github.com/ProtonMail/react-storybook#readme",
+  "dependencies": {
+    "proton-pack": "github:ProtonMail/boilerplate.git#master"
+  },
+  "devDependencies": {
+    "react-components": "github:ProtonMail/react-components#master",
+    "@storybook/react": "^5.0.5",
+    "@storybook/addon-actions": "^5.0.5",
+    "@storybook/addon-links": "^5.0.5",
+    "@storybook/addons": "^5.0.5",
+    "@babel/core": "^7.4.0",
+    "babel-loader": "^8.0.5"
+  }
+}
