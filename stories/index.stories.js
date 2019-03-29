@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'react-components/styles/index.scss';
 import { storiesOf } from '@storybook/react';
 
-import { Badge, Button, PrimaryButton, LinkButton, Alert, Breadcrumb, Price, Time } from 'react-components';
+import { Badge, Button, PrimaryButton, LinkButton, Alert, Breadcrumb, Price, Time, Toggle, useToggle, Progress, Select } from 'react-components';
 
 storiesOf('Alert', module)
   .add('Info', () => (
@@ -68,6 +68,29 @@ storiesOf('Price', module)
     <Price divisor={1}>{1500}</Price>
   ));
 
+storiesOf('Progress', module)
+    .add('Default', () => {
+      return <Progress value={30}  />
+    });
+
+const MySelect = () => {
+  const options = [
+    { text: 'option 1', value: 1 },
+    { text: 'option 2', value: 2 },
+    { text: 'option 3', value: 3 }
+  ];
+  const [value, setValue] = useState(options[1]);
+  const handleChange = ({ target }) => {
+    const newValue = target.value;
+    alert(newValue);
+    setValue(newValue);
+  };
+  return <Select value={value} options={options} onChange={handleChange} />
+};
+
+storiesOf('Select', module)
+  .add('Default', () => (<MySelect />));
+
 storiesOf('Time', module)
   .add('Default format', () => (
     <Time>{1552897937}</Time>
@@ -75,3 +98,15 @@ storiesOf('Time', module)
   .add('Custom format', () => (
     <Time format="LLL">{1552897937}</Time>
   ));
+
+const MyToggle = () => {
+  const { state, toggle } = useToggle(true);
+  const handleChange = ({ target }) => {
+    alert(target.checked);
+    toggle();
+  }
+  return <Toggle cheched={state} onChange={handleChange} id="myToggle" />;
+};
+
+storiesOf('Toggle', module)
+  .add('with useToggle', () => (<MyToggle />));
