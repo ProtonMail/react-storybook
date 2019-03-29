@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'react-components/styles/index.scss';
 import { storiesOf } from '@storybook/react';
+import pokedex from '../pokedex.js';
 
-import { Badge, Button, PrimaryButton, LinkButton, Alert, Breadcrumb, Price, Time, Toggle, useToggle, Progress, Select } from 'react-components';
+import { Badge, Button, PrimaryButton, LinkButton, Alert, Breadcrumb, Price, Time, Toggle, useToggle, Progress, Select, Pagination, usePagination, usePaginationAsync, useModal, Modal, ContentModal, FooterModal, ResetButton, ConfirmModal } from 'react-components';
 
 storiesOf('Alert', module)
   .add('Info', () => (
@@ -53,6 +54,74 @@ storiesOf('Button', module)
   .add('Link button', () => (
     <LinkButton>Hello Button</LinkButton>
   ));
+
+const MyModal = ({ type }) => {
+  const { isOpen, open, close } = useModal();
+  const title = 'MyModal';
+  const handleSubmit = () => alert('submit');
+  return (
+    <>
+      <Button onClick={open}>Open modal</Button>
+      <Modal show={isOpen} onClose={close} title={title} type={type}>
+        <ContentModal onSubmit={handleSubmit} onReset={close}>
+          <p>My modal</p>
+          <FooterModal>
+            <ResetButton>Cancel</ResetButton>
+            <PrimaryButton type="submit">Submit</PrimaryButton>
+          </FooterModal>
+        </ContentModal>
+      </Modal>
+    </>
+  );
+};
+
+storiesOf('Modal', module)
+  .add('Basic', () => (<MyModal />))
+  .add('Small', () => (<MyModal type="small" />));
+  // .add('Confirm', () => (<MyConfirmModal />))
+  // .add('Input', () => (<MyInputModal />));
+
+const MyPagination = () => {
+  const { page, list, onNext, onPrevious, onSelect } = usePagination(pokedex);
+
+  return (
+    <>
+      <ul>
+        {list.map(({ name, type }) => (<li>{name.english} ({type.join(', ')})</li>))}
+      </ul>
+      <Pagination page={page} onNext={onNext} onPrevious={onPrevious} onSelect={onSelect} />
+    </>
+  );
+};
+
+const MyPaginationAsync = () => {
+  const { page, onNext, onPrevious, onSelect } = usePaginationAsync(1);
+  const limit = 10;
+  const [list, setList] = useState([]);
+
+  const queryAPI = () => {
+    setTimeout(() => {
+      setList([...pokedex].splice((page - 1) * limit, limit));
+    }, 500);
+  };
+
+  useEffect(() => {
+    queryAPI();
+  }, page);
+
+  return (
+    <>
+      <ul>
+        {list.map(({ name, type }) => (<li>{name.english} ({type.join(', ')})</li>))}
+      </ul>
+      <Pagination page={page} onNext={onNext} onPrevious={onPrevious} onSelect={onSelect} />
+    </>
+  );
+};
+
+storiesOf('Pagination', module)
+  .add('Basic', () => (<MyPagination />))
+  .add('Async', () => (<MyPaginationAsync />));
 
 storiesOf('Price', module)
   .add('Default', () => (
