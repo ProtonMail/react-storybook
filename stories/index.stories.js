@@ -3,7 +3,7 @@ import 'react-components/styles/index.scss';
 import { storiesOf } from '@storybook/react';
 import pokedex from '../pokedex.js';
 
-import { Badge, Button, PrimaryButton, LinkButton, Alert, Breadcrumb, Price, Time, Toggle, useToggle, Progress, Select, Pagination, usePagination, usePaginationAsync, useModal, Modal, ContentModal, FooterModal, ResetButton, ConfirmModal } from 'react-components';
+import { Badge, Button, PrimaryButton, LinkButton, Alert, Breadcrumb, Price, Time, Toggle, useToggle, Progress, Select, Pagination, usePagination, usePaginationAsync, useModal, Modal, ContentModal, FooterModal, ResetButton, ConfirmModal, Href, Info, LearnMore } from 'react-components';
 
 storiesOf('Alert', module)
   .add('Info', () => (
@@ -54,6 +54,11 @@ storiesOf('Button', module)
   .add('Link button', () => (
     <LinkButton>Hello Button</LinkButton>
   ));
+
+storiesOf('Link', module)
+  .add('Href', () => (<Href url="https://protonmail.com">ProtonMail</Href>))
+  .add('Info', () => (<Info url="https://protonmail.com" title="ProtonMail" />))
+  .add('LearnMore', () => (<LearnMore url="https://protonmail.com" />));
 
 const MyModal = ({ type }) => {
   const { isOpen, open, close } = useModal();
