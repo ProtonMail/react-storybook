@@ -3,7 +3,7 @@ import 'react-components/styles/index.scss';
 import { storiesOf } from '@storybook/react';
 import pokedex from '../pokedex.js';
 
-import { Badge, Button, PrimaryButton, LinkButton, Alert, Breadcrumb, Price, Time, Toggle, useToggle, Progress, Select, Pagination, usePagination, usePaginationAsync, useModal, Modal, ContentModal, FooterModal, ResetButton, ConfirmModal, Href, Info, LearnMore } from 'react-components';
+import { Badge, Button, PrimaryButton, LinkButton, Alert, Breadcrumb, Price, Time, Toggle, useToggle, Progress, Select, Pagination, usePagination, usePaginationAsync, useModal, Modal, ContentModal, FooterModal, ResetButton, ConfirmModal, Href, Info, LearnMore, Tooltip } from 'react-components';
 
 storiesOf('Alert', module)
   .add('Info', () => (
@@ -184,3 +184,8 @@ const MyToggle = () => {
 
 storiesOf('Toggle', module)
   .add('with useToggle', () => (<MyToggle />));
+
+storiesOf('Tooltip', module)
+  .add('Default', () => (<Tooltip title="ProtonMail"><Button>Hover me</Button></Tooltip>))
+  .add('with placement', () => (<Tooltip title="ProtonMail" placement="bottom"><Button>Hover me</Button></Tooltip>))
+  .add('with trigger', () => (<Tooltip title="ProtonMail" trigger="click"><Button>Click on me</Button></Tooltip>));
