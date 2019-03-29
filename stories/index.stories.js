@@ -3,7 +3,7 @@ import 'react-components/styles/index.scss';
 import { storiesOf } from '@storybook/react';
 import pokedex from '../pokedex.js';
 
-import { Badge, Button, PrimaryButton, LinkButton, Alert, Breadcrumb, Price, Time, Toggle, useToggle, Progress, Select, Pagination, usePagination, usePaginationAsync, useModal, Modal, ContentModal, FooterModal, ResetButton, ConfirmModal, Href, Info, LearnMore, Tooltip } from 'react-components';
+import { Badge, Button, PrimaryButton, LinkButton, Alert, Breadcrumb, Price, Time, Toggle, useToggle, Progress, Select, Pagination, usePagination, usePaginationAsync, useModal, Modal, ContentModal, FooterModal, ResetButton, ConfirmModal, Href, Info, LearnMore, Tooltip, Icon } from 'react-components';
 
 storiesOf('Alert', module)
   .add('Info', () => (
@@ -79,6 +79,9 @@ const MyModal = ({ type }) => {
     </>
   );
 };
+
+storiesOf('Icon', module)
+  .add('example: caret', () => (<Icon name="caret" />));
 
 storiesOf('Modal', module)
   .add('Basic', () => (<MyModal />))
