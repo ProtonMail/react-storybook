@@ -3,7 +3,7 @@ import 'react-components/styles/index.scss';
 import { storiesOf } from '@storybook/react';
 import pokedex from '../pokedex.js';
 
-import { Badge, Button, PrimaryButton, LinkButton, Alert, Breadcrumb, Price, Time, Toggle, useToggle, Progress, Select, Pagination, usePagination, usePaginationAsync, useModal, Modal, ContentModal, FooterModal, ResetButton, ConfirmModal, Href, Info, LearnMore, Tooltip, Icon } from 'react-components';
+import { Badge, Button, PrimaryButton, LinkButton, Alert, Breadcrumb, Price, Time, Toggle, useToggle, Progress, Select, Pagination, usePagination, usePaginationAsync, useModal, Modal, ContentModal, FooterModal, ResetButton, ConfirmModal, Href, Info, LearnMore, Tooltip, Icon, Table, TableBody, TableHeader, SmallButton, LargeButton, TableRow } from 'react-components';
 
 storiesOf('Alert', module)
   .add('Info', () => (
@@ -46,13 +46,19 @@ storiesOf('Breadcrumb', module)
 
 storiesOf('Button', module)
   .add('Basic', () => (
-    <Button>Hello Button</Button>
+    <Button>Button</Button>
   ))
   .add('Primary button', () => (
-    <PrimaryButton>Hello Button</PrimaryButton>
+    <PrimaryButton>Primary Button</PrimaryButton>
   ))
   .add('Link button', () => (
-    <LinkButton>Hello Button</LinkButton>
+    <LinkButton>Link Button</LinkButton>
+  ))
+  .add('Small button', () => (
+    <SmallButton>Small Button</SmallButton>
+  ))
+  .add('Large button', () => (
+    <LargeButton>Large Button</LargeButton>
   ));
 
 storiesOf('Link', module)
@@ -167,6 +173,17 @@ const MySelect = () => {
 
 storiesOf('Select', module)
   .add('Default', () => (<MySelect />));
+
+storiesOf('Table', module)
+  .add('Basic', () => (
+    <Table>
+      <TableHeader cells={['Message', 'Status', 'Actions']} />
+      <TableBody>
+        <TableRow cells={['Panda', 'Enabled', <SmallButton>Edit</SmallButton>]} />
+        <TableRow cells={['Tigre', 'Disabled', <SmallButton>Edit</SmallButton>]} />
+      </TableBody>
+    </Table>
+  ));
 
 storiesOf('Time', module)
   .add('Default format', () => (
