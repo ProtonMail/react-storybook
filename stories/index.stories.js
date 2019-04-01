@@ -3,7 +3,7 @@ import 'react-components/styles/index.scss';
 import { storiesOf } from '@storybook/react';
 import pokedex from '../pokedex.js';
 
-import { Badge, Button, PrimaryButton, LinkButton, Alert, Breadcrumb, Price, Time, Toggle, useToggle, Progress, Select, Pagination, usePagination, usePaginationAsync, useModal, Modal, ContentModal, FooterModal, ResetButton, ConfirmModal, Href, Info, LearnMore, Tooltip, Icon, Table, TableBody, TableHeader, SmallButton, LargeButton, TableRow, Dropdown } from 'react-components';
+import { Badge, Button, PrimaryButton, LinkButton, Alert, Breadcrumb, Price, Time, Toggle, useToggle, Progress, Select, Pagination, usePagination, usePaginationAsync, useModal, Modal, ContentModal, FooterModal, ResetButton, ConfirmModal, Href, Info, LearnMore, Tooltip, Icon, Table, TableBody, TableHeader, SmallButton, LargeButton, TableRow, Dropdown, DropdownMenu } from 'react-components';
 
 storiesOf('Alert', module)
   .add('Info', () => (
@@ -210,18 +210,13 @@ storiesOf('Tooltip', module)
   .add('with placement', () => (<Tooltip title="ProtonMail" placement="bottom"><Button>Hover me</Button></Tooltip>))
   .add('with trigger', () => (<Tooltip title="ProtonMail" trigger="click"><Button>Click on me</Button></Tooltip>));
 
+const list = pokedex.map(({ name, type }) => ({ text: `${ name.english } ${ type.join(', ') }` }));
+
 storiesOf('Dropdown', module)
-  .add('Default', () => (
+  .add('Basic', () => (
     <Dropdown autoClose={true}>Default</Dropdown>))
-  .add('Nav', () => (
-    <Dropdown className="" component="li">
-      <a href="#">Parent</a>
-      <ul>
-      <li><a href="#">Item 1</a></li>
-      <li><a href="#">Item 2</a></li>
-      <li>Sample Header</li>
-      <li><a href="#">Item 3</a></li>
-      <li><a href="#">Item 4</a></li>
-      </ul>
+  .add('Default', () => (
+    <Dropdown className="">
+      <DropdownMenu list={list}/>
     </Dropdown>
 ));
