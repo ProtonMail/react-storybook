@@ -3,7 +3,7 @@ import 'react-components/styles/index.scss';
 import { storiesOf } from '@storybook/react';
 import pokedex from '../pokedex.js';
 
-import { Badge, Button, PrimaryButton, LinkButton, Alert, Breadcrumb, Price, Time, Toggle, useToggle, Progress, Select, Pagination, usePagination, usePaginationAsync, useModal, Modal, ContentModal, FooterModal, ResetButton, ConfirmModal, Href, Info, LearnMore, Tooltip, Icon, Table, TableBody, TableHeader, SmallButton, LargeButton, TableRow, Dropdown, DropdownMenu } from 'react-components';
+import { Badge, Button, PrimaryButton, LinkButton, Alert, Breadcrumb, Price, Time, Toggle, useToggle, Progress, Select, Pagination, usePagination, usePaginationAsync, useModal, Modal, ContentModal, FooterModal, ResetButton, ConfirmModal, Href, Info, LearnMore, Tooltip, Icon, Table, TableBody, TableHeader, SmallButton, LargeButton, TableRow, Dropdown, DropdownMenu, DropdownActions } from 'react-components';
 
 storiesOf('Alert', module)
   .add('Info', () => (
@@ -210,13 +210,26 @@ storiesOf('Tooltip', module)
   .add('with placement', () => (<Tooltip title="ProtonMail" placement="bottom"><Button>Hover me</Button></Tooltip>))
   .add('with trigger', () => (<Tooltip title="ProtonMail" trigger="click"><Button>Click on me</Button></Tooltip>));
 
-const list = pokedex.map(({ name, type }) => ({ text: `${ name.english } ${ type.join(', ') }` }));
+const dropdownMenuList = pokedex.map(({ name }) => ({ text: name.english }));
 
 storiesOf('Dropdown', module)
   .add('Basic', () => (
     <Dropdown autoClose={true}>Default</Dropdown>))
-  .add('Default', () => (
-    <Dropdown className="">
-      <DropdownMenu list={list}/>
+  .add('with DropdownMenu (text version)', () => (
+    <Dropdown>
+      <DropdownMenu list={dropdownMenuList}/>
     </Dropdown>
-));
+  ))
+  .add('with DropdownMenu (link version)', () => (
+    <Dropdown>
+      <DropdownMenu list={dropdownMenuList.map((item) => ({ ...item, type: 'link' }))} />
+    </Dropdown>
+  ))
+  .add('with DropdownMenu (button version)', () => (
+    <Dropdown>
+      <DropdownMenu list={dropdownMenuList.map((item) => ({ ...item, type: 'button' }))} />
+    </Dropdown>
+  ))
+  .add('DropdownActions', () => (
+    <DropdownActions list={dropdownMenuList} />
+  ));
