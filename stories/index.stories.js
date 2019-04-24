@@ -3,7 +3,7 @@ import 'react-components/styles/index.scss';
 import { storiesOf } from '@storybook/react';
 import pokedex from '../pokedex.js';
 
-import { Badge, Button, PrimaryButton, LinkButton, Alert, Breadcrumb, Price, Time, Toggle, useToggle, Progress, Select, Pagination, usePagination, usePaginationAsync, useModal, Modal, ContentModal, FooterModal, ResetButton, ConfirmModal, Href, Info, LearnMore, Tooltip, Icon, Table, TableBody, TableHeader, SmallButton, LargeButton, TableRow, Dropdown, DropdownMenu, DropdownActions } from 'react-components';
+import { Badge, Button, PrimaryButton, LinkButton, Alert, Breadcrumb, Price, Time, Toggle, useToggle, Progress, Select, Pagination, usePagination, usePaginationAsync, useModal, Modal, ContentModal, FooterModal, ResetButton, ConfirmModal, Href, Info, LearnMore, Tooltip, Icon, Table, TableBody, TableHeader, SmallButton, LargeButton, TableRow, Dropdown, DropdownMenu, DropdownActions, Input, PasswordInput, EmailInput, SearchInput, FileInput, DateInput, TextArea, RichTextEditor, ColorPicker } from 'react-components';
 
 storiesOf('Alert', module)
   .add('Info', () => (
@@ -88,6 +88,17 @@ const MyModal = ({ type }) => {
 
 storiesOf('Icon', module)
   .add('example: caret', () => (<Icon name="caret" />));
+
+storiesOf('Input', module)
+  .add('Input', () => (<Input />))
+  .add('EmailInput', () => (<EmailInput />))
+  .add('SearchInput', () => (<SearchInput />))
+  .add('PasswordInput', () => (<PasswordInput />))
+  .add('FileInput', () => (<FileInput />))
+  .add('TextArea', () => (<TextArea />))
+  .add('RichTextEditor', () => <RichTextEditor />)
+  .add('DateInput'), () => (<DateInput />)
+  .add('ColorPicker', () => (<ColorPicker />));
 
 storiesOf('Modal', module)
   .add('Basic', () => (<MyModal />))
