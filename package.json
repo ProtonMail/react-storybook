@@ -20,16 +20,18 @@
   },
   "homepage": "https://github.com/ProtonMail/react-storybook#readme",
   "dependencies": {
-    "proton-pack": "github:ProtonMail/boilerplate.git#master"
+    "proton-pack": "github:ProtonMail/boilerplate.git#master",
+    "react-components": "github:ProtonMail/react-components#master",
+    "proton-shared": "github:ProtonMail/proton-shared#master",
+    "react-router-dom": "^4.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",
-    "@storybook/addon-actions": "^5.0.5",
-    "@storybook/addon-info": "^5.0.5",
-    "@storybook/addon-links": "^5.0.5",
-    "@storybook/addons": "^5.0.5",
-    "@storybook/react": "^5.0.5",
-    "babel-loader": "^8.0.5",
-    "react-components": "github:ProtonMail/react-components#master"
+    "@storybook/addon-actions": "^5.0.10",
+    "@storybook/addon-info": "^5.0.10",
+    "@storybook/addon-links": "^5.0.10",
+    "@storybook/addons": "^5.0.10",
+    "@storybook/react": "^5.0.10",
+    "babel-loader": "^8.0.5"
   }
 }
