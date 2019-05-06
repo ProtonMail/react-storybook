@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import 'react-components/styles/index.scss';
-import { storiesOf } from '@storybook/react';
+import { storiesOf, addDecorator } from '@storybook/react';
 import pokedex from '../pokedex.js';
+import centered from '@storybook/addon-centered/react';
 
-import { Badge, Button, PrimaryButton, LinkButton, Alert, Breadcrumb, Price, Time, Toggle, useToggle, Progress, Select, Pagination, usePagination, usePaginationAsync, useModal, Modal, ContentModal, FooterModal, ResetButton, ConfirmModal, Href, Info, LearnMore, Tooltip, Icon, Table, TableBody, TableHeader, SmallButton, LargeButton, TableRow, Dropdown, DropdownMenu, DropdownActions, Input, PasswordInput, EmailInput, SearchInput, FileInput, DateInput, TextArea, RichTextEditor, ColorPicker } from 'react-components';
+import { Badge, Button, PrimaryButton, LinkButton, Alert, Breadcrumb, Price, Time, Toggle, useToggle, Progress, Select, Pagination, usePagination, usePaginationAsync, useModal, Modal, ContentModal, FooterModal, ResetButton, ConfirmModal, Href, Info, LearnMore, Tooltip, Icon, Table, TableBody, TableHeader, SmallButton, LargeButton, TableRow, Dropdown, DropdownMenu, DropdownActions, Input, PasswordInput, EmailInput, SearchInput, FileInput, DateInput, TextArea, RichTextEditor, ColorPicker, ErrorZone } from 'react-components';
+
+addDecorator(centered);
+
 
 storiesOf('Alert', module)
   .add('Info', () => (
@@ -34,8 +38,17 @@ storiesOf('Badge', module)
   ))
   .add('Error', () => (
     <Badge type="error">Error</Badge>
+  ))
+  .add('All badges', () => (
+  <>
+ <Badge type="success">Success</Badge>
+ <Badge type="warning">Warning</Badge>
+ <Badge type="error">Error</Badge>
+ <Badge type="origin">Origin</Badge>
+ </>
   ));
 
+  
 storiesOf('Breadcrumb', module)
   .add('Basic', () => (
     <Breadcrumb
@@ -90,12 +103,22 @@ storiesOf('Icon', module)
   .add('example: caret', () => (<Icon name="caret" />));
 
 storiesOf('Input', module)
-  .add('Input', () => (<Input />))
+storiesOf('Input/Input', module)
+  .add('Default', () => (<Input />))
+  .add('Error', () => (
+  <ErrorZone> <Input/>
+  ⚠️ Something happened. ¯\_(ツ)_/¯
+  </ErrorZone>))
+  .add('Error after validation', () => (<Input error="This is error." placeholder="Type something to see the error message."/>))
+storiesOf('Input', module)
   .add('EmailInput', () => (<EmailInput />))
   .add('SearchInput', () => (<SearchInput />))
   .add('PasswordInput', () => (<PasswordInput />))
   .add('FileInput', () => (<FileInput />))
-  .add('TextArea', () => (<TextArea />))
+storiesOf('Input/TextArea', module)
+  .add('Default', () => (<TextArea />))
+  .add('Error', () => (<TextArea error="Error, Error! Please type something else." placeholder="Type stuff..."/>))
+storiesOf('Input', module)
   .add('RichTextEditor', () => <RichTextEditor />)
   .add('DateInput'), () => (<DateInput />)
   .add('ColorPicker', () => (<ColorPicker />));
@@ -179,11 +202,22 @@ const MySelect = () => {
     alert(newValue);
     setValue(newValue);
   };
-  return <Select value={value} options={options} onChange={handleChange} />
+  return <Select value={value} options={options} onChange={handleChange}/>
+};
+
+const MySelectWithError = () => {
+  const options = [
+    { text: 'option 1', value: 1 },
+    { text: 'Опција 2 ', value: 2 },
+    { text: ' 😀 😎 👍 💯', value: 3 }
+  ];
+  const [value, setValue] = useState(options[1]);
+  return <Select value={value} options={options} error="Sorry, I can't allow you to do that."/>
 };
 
 storiesOf('Select', module)
-  .add('Default', () => (<MySelect />));
+  .add('Default', () => (<MySelect />))
+  .add('Error', () => (<MySelectWithError/>));
 
 storiesOf('Table', module)
   .add('Basic', () => (
