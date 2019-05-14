@@ -3,7 +3,7 @@ import 'react-components/styles/index.scss';
 import { storiesOf } from '@storybook/react';
 import pokedex from '../pokedex.js';
 
-import { Badge, Button, PrimaryButton, LinkButton, Alert, Breadcrumb, Price, Time, Toggle, useToggle, Progress, Select, Pagination, usePagination, usePaginationAsync, useModal, Modal, ContentModal, FooterModal, ResetButton, ConfirmModal, Href, Info, LearnMore, Tooltip, Icon, Table, TableBody, TableHeader, SmallButton, LargeButton, TableRow, Dropdown, DropdownMenu, DropdownActions, Input, PasswordInput, EmailInput, SearchInput, FileInput, DateInput, TextArea, RichTextEditor, ColorPicker } from 'react-components';
+import { Autocomplete, Badge, Button, PrimaryButton, LinkButton, Alert, Breadcrumb, Price, Time, Toggle, useToggle, Progress, Select, Pagination, usePagination, usePaginationAsync, useModal, Modal, ContentModal, FooterModal, ResetButton, ConfirmModal, Href, Info, LearnMore, Tooltip, Icon, Table, TableBody, TableHeader, SmallButton, LargeButton, TableRow, Dropdown, DropdownMenu, DropdownActions, Input, PasswordInput, EmailInput, SearchInput, FileInput, DateInput, TextArea, RichTextEditor, ColorPicker } from 'react-components';
 
 storiesOf('Alert', module)
   .add('Info', () => (
@@ -244,3 +244,13 @@ storiesOf('Dropdown', module)
   .add('DropdownActions', () => (
     <DropdownActions list={dropdownMenuList} />
   ));
+
+storiesOf("Autocomplete", module).add("Basic", () => {
+  return (
+    <Autocomplete
+      inputValue={"tion"}
+      list={["option 1", "option 2", "option 3"]}
+      minChars={1}
+    />
+  );
+});
